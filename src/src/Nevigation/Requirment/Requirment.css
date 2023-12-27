@@ -1,0 +1,94 @@
+.requirement-icon{
+  width: 40%;
+  height: auto;
+
+}
+
+.requirement-form{
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, #9984f6 0%, #6d51ee 20%, #ffffff 20%);
+  padding: 10px;
+  margin: 30px auto;
+  width: 600px;
+  height: 470px;
+}
+
+.requirement-container {
+  
+  padding: 20px;
+
+  }
+  
+  h2 {
+    color: rgb(236, 236, 236);
+    font-size: 36px;
+    margin: 10px auto ;
+    text-align: center;
+    
+  }
+
+  h3{
+    margin-top: 30px;
+  }
+  
+  .button-group {
+    margin-top: 10px;
+    margin-left:350px;
+    display: flex;
+    gap: 10px;
+   
+  }
+
+  .submitButton{
+   left: 75px;
+   background-color: #6a6a6a;
+   width: 120px;
+  }
+
+  .submitButton:hover{
+    background-color: #1c1c1c;
+  }
+
+  .BackPageButton{
+    background-color: #6a6a6a;
+  }
+  
+  .BackPageButton:hover{
+    background-color: #1c1c1c;
+  }
+
+/* grid display */
+
+.requirement-title-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px ;
+  align-items: center;
+
+  grid-template-areas: 
+  "InstAI-Icon ."
+  
+  ;
+
+  grid-gap: 4px;
+  margin-bottom: 14px;
+}
+
+.requirement-InstAI-icon{
+  grid-area: InstAI-Icon;
+  justify-self: start;
+}
+
+
+.requirement-grid-line{
+  grid-area: gridline;
+  grid-column: 1 / -1; 
+  height: 2.5px;
+  background-color: rgb(230, 226, 226);
+  box-shadow: 5px 2.5px 10px rgba(0, 0, 0, 0.2); 
+
+  grid-area: grid-line;
+  justify-self: start;
+}

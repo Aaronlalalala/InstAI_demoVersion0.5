@@ -1,0 +1,131 @@
+/* CreateSec.css */
+
+.create-page {
+  padding: 20px;
+}
+
+  .projectPageButton{
+    background-color: #6a6a6a;
+  }
+  .projectPageButton:hover{
+    background-color: #1c1c1c;
+  }
+
+  .createProjectName{
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+
+  .createDeviceName{
+    margin-bottom: 30px;
+  }
+
+  .createButton{
+    background-color:#6a6a6a;
+  }
+
+  .createButton:hover{
+    background-color:#1c1c1c;
+  }
+
+  .create-form{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, #9984f6 0%, #6d51ee 20%, #ffffff 20%);
+    padding: 10px;
+    margin: 30px auto;
+    width: 600px;
+    height: 400px;
+  }
+
+  .create-icon{
+    width: 40%;
+    height: auto;
+  }
+
+  .link {
+    margin: 10px 0;
+  }
+  
+  .create-title {
+    color: rgb(236, 236, 236);
+    font-size: 36px;
+    margin: 10px auto ;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    background-color: #000000;
+  }
+  
+  button[type="button"] {
+    background-color: #000000;
+  }
+  
+
+/* grid display */
+
+.create-title-grid{
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows: 50px ;
+  align-items: center; 
+  
+  grid-template-areas: 
+  
+  "InstAI-Icon projectPage"
+  "gridline ."
+;
+
+  grid-gap: 4px;
+  margin-bottom: 10px;
+}
+
+.create-InstAI-icon{
+  grid-area: InstAI-Icon;
+  justify-self: start;
+}
+
+.create-projectPage{
+  grid-area: projectPage;
+  justify-self: end;
+}
+
+.create-grid-line{
+  grid-area: gridline;
+  grid-column: 1 / -1; 
+  height: 2.5px;
+  background-color: rgb(230, 226, 226);
+  box-shadow: 5px 2.5px 10px rgba(0, 0, 0, 0.2); 
+
+  grid-area: grid-line;
+  justify-self: start;
+}

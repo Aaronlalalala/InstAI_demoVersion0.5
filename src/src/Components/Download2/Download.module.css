@@ -1,0 +1,214 @@
+.login {
+    width: 400px;
+    background: #fff;
+    border: 1px solid #dddfe2;
+    box-shadow: 0 2px 4px rgb(0 0 10 / 64%), 0 8px 16px rgb(0 10 0 / 34%);
+    border-radius: 8px;
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.downloadDisplayImg{
+  position: absolute;
+  margin-top: 30px;
+}
+
+.imgPreviews{
+  border: 1px solid #dddfe2;
+  width: auto;
+  display: inline-block;
+  
+}
+
+.downloadGridLine{
+    grid-column: 1 / -1; 
+    height: 2.5px;
+    background-color: rgb(230, 226, 226);
+    box-shadow: 5px 2.5px 10px rgba(0, 0, 0, 0.2); 
+  
+    grid-area: grid-line;
+    justify-self: start;
+  }
+
+  .test{
+    grid-column: 1 / -1; 
+    height: 2.5px;
+    background-color: rgb(230, 226, 226);
+    box-shadow: 5px 2.5px 10px rgba(0, 0, 0, 0.2); 
+  
+    grid-area: grid-line;
+    justify-self: start;
+  }
+
+.login > form input {
+    border-radius: 20px;
+    border: 2px solid rgb(14, 3, 3);
+    outline: none;
+    color: #e7edef;
+    margin: 2% 0;
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+}
+
+ .downloadBackground {
+    padding: 20px;
+    padding-top: 0px;
+    overflow: auto;
+} 
+
+  .downloadTitle{
+    text-align: center;
+    margin: 0px;
+    color: white;
+  }
+
+h1{
+    position: sticky;
+    top: 20px;
+}
+input{
+    position: sticky;
+    top: 80px;
+}
+.preview-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .downloadInput{
+    width: 200px;
+    margin-top: 50px;
+    
+  }
+
+  .downloadRemoveAll{
+    margin-left: 1300px;
+    width: 125px;
+    background-color:#6a6a6a;
+  }
+
+  .downloadRemoveAll:hover{
+    background-color:#1c1c1c;
+  }
+
+  .downloadAll{
+    margin-left: 20px;
+    background-color:#6a6a6a;
+  }
+
+  .downloadAll:hover{
+    background-color:#1c1c1c;
+  }
+
+  .downloadSubmit{
+    margin-left: 20px;
+    background-color:#6a6a6a;
+  }
+
+  .downloadSubmit:hover{
+    background-color:#1c1c1c;
+  }
+
+  .downloadImg{
+    max-width: 100%;
+    max-height: 100%;
+    padding-top: 10px;
+  }
+
+  .downloadSingleImg{
+    margin-right: 10px;
+
+  }
+
+  .downloadDelete{
+    margin: 10px;
+    margin-top: 0px;
+  
+  }
+  
+  .downloadDiv{
+    flex-wrap: wrap;
+  }
+
+  .downloadForm{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #9984f6 0%, #6d51ee 40%, #ffffff 40%);
+    padding: 10px;
+    margin: 30px auto;
+    width: 40vw;
+    height: 130px;
+
+  }
+
+
+
+/* grid display */
+
+.downloadTitleGrid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px ;
+    align-items: center;
+  
+    grid-template-areas: 
+    "InstAI-Icon ."
+    
+    ;
+  
+    grid-gap: 4px;
+    margin-bottom: 14px;
+  }
+
+  .downloadInstAIicon{
+    grid-area: InstAI-Icon;
+    justify-self: start;
+  }
+
+  .downloadIcon{
+    width: 79.19px;
+    height: auto;
+    margin-top: 3.5px;
+  }
+
+.downloadInputGrid{
+  display: grid;
+  grid-template-columns: 125px 225px 250px;
+  grid-template-rows: 50px ;
+  align-items: center;
+
+  grid-template-areas: 
+  "downloadInput removeAll downloadAll downloadSubmit "
+  
+  ;
+
+  grid-gap: 0px;
+  margin-bottom: 5vh;
+  margin-top: 1vh;
+}
+
+.downloadInputGrid1{
+  grid-area: downloadInput;
+  justify-self: start;
+}
+
+.downloadInputGrid2{
+  grid-area: removeAll;
+  justify-self: end;
+   margin-top: 50px;
+}
+
+.downloadInputGrid3{
+  grid-area: downloadAll;
+  justify-self: start;
+  margin-top: 50px;
+}
+
+.downloadInputGrid4{
+  grid-area: downloadSubmit;
+  justify-self: end;
+  margin-top: 50px;
+
+}
