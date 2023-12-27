@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { NavLink,  useNavigate ,useLocation } from 'react-router-dom';
-import './ConfirmIMG.css';
+import {  useNavigate ,useLocation } from 'react-router-dom';
+import '../Confirm/ConfirmIMG.css';
 import InstAI_icon from '../../image/instai_icon.png';
 
-function ConfirmImg() {
+function Data() {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [imagePreviews2, setImagePreviews2] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
   const projectname = searchParams.get('projectname');
-  const [confirmed, setConfirmed] = useState(localStorage.getItem('confirmed') === 'true' || false);
   const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fetchData = async () => {
@@ -73,43 +72,20 @@ function ConfirmImg() {
     }
   };
 
-  const handleConfirmButtonClick = () => {
-    if (confirmed) {
-      handleCancelConfirmation();
-    } else {
-      handleConfirmRequirement();
-    }
-  };
-  
-  const handleCancelConfirmation = () => {
-    const userConfirmed = window.confirm('Are you sure you want to cancel the confirmation?');
-    if (userConfirmed) {
-      localStorage.setItem('confirmed', 'false');
-      setConfirmed(false);
-    }
-  };
-  
-  const handleConfirmRequirement = () => {
-    const userConfirmed = window.confirm('Are you sure you want to confirm the requirement?');
-    if (userConfirmed) {
-      localStorage.setItem('confirmed', 'true');
-      setConfirmed(true);
-    }
-  };
 
   const handleGoBack = () => {
+    const confirmed =window.confirm("Remenber to check your requirement ");
     if (!confirmed) {
       const userConfirmed = window.confirm('You have not confirmed the requirement. Are you sure you want to go back?');
       if (!userConfirmed) {
-        return; // Do not proceed if the user cancels
+        return; 
       }
     }
-
     if (confirmed) {
       window.alert('See your model later');
     }
 
-    navigate(`/Step?id=${id}&project=${projectname}`);
+    navigate(`/Model?id=${id}&project=${projectname}`);
   };
   const handleUpload = async () => {
     const confirmUpload = window.confirm('確定要新增圖片?');
@@ -142,7 +118,7 @@ function ConfirmImg() {
       </div>
       <div>
       </div>
-      <h2>Image Preview</h2>
+      <h2>Upload more data</h2>
       <div className="image-previews">
         {imagePreviews.map((preview, index) => (
           <div key={index} className="image-preview">
@@ -172,17 +148,10 @@ function ConfirmImg() {
         ))}
       </div>
       <input type="file" accept="image/*" multiple name="images" onChange={handleFileSelect} />
-      <button
-        onClick={handleConfirmButtonClick}
-        style={{ backgroundColor: confirmed ? 'green' : '' }}
-        disabled={confirmed}
-      >
-        {confirmed ? 'Requirement is already confirmed' : 'Confirm requirement is already'}
-      </button>
-      <button onClick={handleUpload}>Change</button>
+      <button onClick={handleUpload}>Upload</button>
       <button onClick={handleGoBack}>Go Back</button>
     </div>
   );
 }
 
-export default ConfirmImg;
+export default Data;

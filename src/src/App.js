@@ -19,7 +19,8 @@ import ConfirmImg from "./Nevigation/Confirm/ConfirmIMG";
 import Requirement from "./Nevigation/Requirment/Requirment";
 import ConfirmReq from "./Nevigation/Confirm/ConfirmReq";
 import Model     from "./Nevigation/Model/Model";
-
+import Data      from "./Nevigation/Model/Data";
+import Req from "./Nevigation/Model/Req";
 export const ConfirmContext = createContext();
 
 function App() {
@@ -50,7 +51,8 @@ function App() {
           <Route path="/ConfirmImg" element={<ConfirmImg/>}></Route>
           <Route path="/ConfirmReq" element={<ConfirmReq/>}></Route>
           <Route path="/Model"     element={<Model/>}></Route>
-
+          <Route path="/Data"  element={<Data/>}></Route>
+          <Route path="/Req" element={<Req/>}></Route> 
         </Routes>
       </Router>
       </ConfirmContext.Provider>

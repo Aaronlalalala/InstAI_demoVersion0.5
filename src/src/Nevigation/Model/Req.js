@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import './ConfirmSTR.css'; 
+import '../Confirm/ConfirmSTR.css'; 
 import InstAI_icon from '../../image/instai_icon.png';
 
-function ConfirmReq() {
+function Data() {
   const [reqData, setReqData] = useState({});
   const [editable, setEditable] = useState(false);
-  const [confirmed, setConfirmed] = useState(localStorage.getItem('confirmed') === 'true' || false);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
@@ -65,35 +64,13 @@ function ConfirmReq() {
     }
   };
 
-  const handleConfirmButtonClick = () => {
-    if (confirmed) {
-      handleCancelConfirmation();
-    } else {
-      handleConfirmRequirement();
-    }
-  };
-  
-  const handleCancelConfirmation = () => {
-  const userConfirmed = window.confirm('Are you sure you want to cancel the confirmation?');
-  if (userConfirmed) {
-    localStorage.setItem('confirmed', 'false');
-    setConfirmed(false);
-  }
-};
-
-const handleConfirmRequirement = () => {
-  const userConfirmed = window.confirm('Are you sure you want to confirm the requirement?');
-  if (userConfirmed) {
-    localStorage.setItem('confirmed', 'true');
-    setConfirmed(true);
-  }
-};
 
   const handleGoBack = () => {
+    const confirmed = window.confirm("Remenber to check data");
     if (!confirmed) {
       const userConfirmed = window.confirm('You have not confirmed the requirement. Are you sure you want to go back?');
       if (!userConfirmed) {
-        return; // Do not proceed if the user cancels
+        return; 
       }
     }
 
@@ -101,7 +78,7 @@ const handleConfirmRequirement = () => {
       window.alert('See your model later');
     }
 
-    navigate(`/Step?id=${id}&project=${projectname}`);
+    navigate(`/Model?id=${id}&project=${projectname}`);
   };
 
   return (
@@ -110,7 +87,7 @@ const handleConfirmRequirement = () => {
         <img src={InstAI_icon} className="logo" alt="Your Logo" />
       </div>
       <div className="data-preview">
-        <h2>Data Preview</h2>
+        <h2>Your original answer</h2>
         <div className="questions-answers">
           {reqData.Requirement1 && (
             <div className="question-answer">
@@ -149,18 +126,12 @@ const handleConfirmRequirement = () => {
           )}
         </div>
       </div>
-      <button
-        onClick={handleConfirmButtonClick}
-        style={{ backgroundColor: confirmed ? 'green' : '' }}
-        disabled={confirmed}
-      >
-        {confirmed ? 'Requirement is already confirmed' : 'Confirm requirement is already'}
-      </button>
+      
       <button onClick={() => setEditable(!editable)}>{editable ? 'Cancel Edit' : 'Edit'}</button>
-      {editable && <button onClick={handleSaveButtonClick}>Save Edition</button>}
+      {editable && <button onClick={handleSaveButtonClick}>SEND Edition</button>}
       <button onClick={handleGoBack}>Go Back</button>
     </div>
   );
 }
 
-export default ConfirmReq;
+export default Data;
