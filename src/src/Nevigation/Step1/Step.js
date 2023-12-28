@@ -12,16 +12,22 @@ function Step() {
   const modelLink = `/Model?id=${userid}&projectname=${projectname}`;
   const [confirm1Data, setConfirm1Data] = useState(localStorage.getItem('confirmStatusImg') === 'false');
   const [confirm2Data, setConfirm2Data] = useState(localStorage.getItem('confirmStatusReq') === 'false');
-
+  /*const response =  來自後端回傳的檢查 可能使用axios 當這個頁面被點及進入時 後端會回傳說相對應的data以及req資料夾是否是空的 如果都是有一定資料量的話 回傳true */
   const navigate = useNavigate();
   const handleFormDataChange = () => {
     const userConfirm=window.confirm("圖片檢查");
     if(userConfirm){
-      setConfirm1Data((prevData) => {
-        const newConfirm1Data = !prevData;
-        localStorage.setItem('confirmStatusImg', newConfirm1Data.toString());
-        return newConfirm1Data;
-      });
+      if(confirm1Data){
+        console.log("不須變更");
+        return;
+      }
+      else{
+        setConfirm1Data((prevData) => {
+          const newConfirm1Data = !prevData;
+          localStorage.setItem('confirmStatusImg', newConfirm1Data.toString());
+          return newConfirm1Data;
+        });
+      }
       console.log('Button clicked. Confirm is now:', confirm1Data);
       navigate(`/ConfirmImg?id=${userid}&projectname=${projectname}`);
     }
@@ -33,11 +39,17 @@ function Step() {
   const handleForm2DataChange = () => {
     const userConfirm=window.confirm("x眼派對!!!");
     if(userConfirm){
-      setConfirm2Data((prevData) => {
-        const newConfirm2Data = !prevData;
-        localStorage.setItem('confirmStatusReq', newConfirm2Data.toString());
-        return newConfirm2Data;
-      });
+      if(confirm2Data){
+        console.log("不須變更");
+        return;
+      }
+      else{
+        setConfirm2Data((prevData) => {
+          const newConfirm2Data = !prevData;
+          localStorage.setItem('confirmStatusReq', newConfirm2Data.toString());
+          return newConfirm2Data;
+        });
+      }
       console.log('Button clicked. Confirm is now:', confirm2Data);
       navigate(`/ConfirmReq?id=${userid}&projectname=${projectname}`);
     }
@@ -47,7 +59,7 @@ function Step() {
   };
   const navigateLogic=()=>{
     const userConfirm=window.confirm("彥君的魔法世界");
-    if(userConfirm){
+    if(userConfirm ){
     if (confirm1Data  && confirm2Data ){  
       navigate(modelLink);
     }
@@ -62,6 +74,25 @@ function Step() {
     return;
    }
   }
+  /*  修改後增加後端之邏輯
+  const navigateLogic=()=>{
+    const userConfirm=window.confirm("彥君的魔法世界");
+    if(userConfirm ){
+    if (confirm1Data  && confirm2Data && 後端回傳之response){  
+      console.log("狀態都為true");
+      navigate(modelLink);
+    }
+    else{
+      window.confirm("步驟錯誤 資料缺失");
+      console.log("error reading");
+      // 錯誤處理
+    }
+  }
+   else{
+    console.log("使用者說no! ");
+    return;
+   }
+  } */
   return (
     <div className="app">
         <div className='main-title-grid'>
