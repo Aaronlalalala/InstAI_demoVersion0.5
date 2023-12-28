@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { NavLink,  useNavigate ,useLocation } from 'react-router-dom';
+import { useNavigate ,useLocation } from 'react-router-dom';
 import './ConfirmIMG.css';
 import InstAI_icon from '../../image/instai_icon.png';
 
@@ -11,10 +11,10 @@ function ConfirmImg() {
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
   const projectname = searchParams.get('projectname');
-  const [confirmed, setConfirmed] = useState(localStorage.getItem('confirmed') === 'true' || false);
+  const [confirmed2, setConfirmed2] = useState(JSON.parse(localStorage.getItem(`confirmed2_${id}_${projectname}`)) === true);
   const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
-  console.log("現在狀態",confirmed);
+  console.log("現在狀態",confirmed2);
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/api/upload/download?username=${id}&projectname=${projectname}`);
@@ -25,6 +25,7 @@ function ConfirmImg() {
     }
   };
   useEffect(() => {
+    localStorage.setItem(`confirmed2_${id}_${projectname}`, confirmed2.toString());
     fetchData();
   }, [id, projectname]);
 
@@ -79,7 +80,7 @@ function ConfirmImg() {
     const confirmeState = window.confirm("do you want to change confirm state");
   
     if (confirmeState) {
-      if(confirmed){
+      if(confirmed2){
         console.log("取消確認狀態");
         handleCancelConfirmation();
       }
@@ -96,28 +97,28 @@ function ConfirmImg() {
   const handleCancelConfirmation = () => {
     const userConfirmed = window.confirm('Are you sure you want to cancel the confirmation?');
     if (userConfirmed) {
-      localStorage.setItem('confirmed', 'false');
-      setConfirmed(false);
+      localStorage.setItem(`confirmed2_${id}_${projectname}`, 'false');
+      setConfirmed2(false);
     }
   };
   
   const handleConfirmRequirement = () => {
     const userConfirmed = window.confirm('Are you sure you want to confirm the requirement?');
     if (userConfirmed) {
-      localStorage.setItem('confirmed', 'true');
-      setConfirmed(true);
+      localStorage.setItem(`confirmed2_${id}_${projectname}`, 'true');
+      setConfirmed2(true);
     }
   };
 
   const handleGoBack = () => {
-    if (!confirmed) {
+    if (!confirmed2) {
       const userConfirmed = window.confirm('You have not confirmed the requirement. Are you sure you want to go back?');
       if (!userConfirmed) {
         return; // Do not proceed if the user cancels
       }
     }
 
-    if (confirmed) {
+    if (confirmed2) {
       window.alert('See your model later');
     }
 
@@ -186,10 +187,9 @@ function ConfirmImg() {
       <input type="file" accept="image/*" multiple name="images" onChange={handleFileSelect} />
       <button
         onClick={handleConfirmButtonClick}
-        style={{ backgroundColor: confirmed ? 'green' : '' }}
-        disabled={confirmed}
+        style={{ backgroundColor: confirmed2 ? 'green' : '' }}
       >
-        {confirmed ? 'Requirement is already confirmed' : 'Confirm requirement is already'}
+        {confirmed2 ? 'Requirement is already confirmed' : 'Confirm requirement is already'}
       </button>
       <button onClick={handleUpload}>Change</button>
       <button onClick={handleGoBack}>Go Back</button>

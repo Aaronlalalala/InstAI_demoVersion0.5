@@ -53,7 +53,19 @@
 }
 
 
-.circleNo1 {
+ .circleNo1{
+  background-color: #6D51EE;
+  border: 4px solid #AA98FF;
+  border-radius: 50%;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 228px;
+  left: 413px;
+  background: #D8DEE4;
+    z-index: 2; 
+}
+ .circleNo1-active{
   background-color: #6D51EE;
   border: 4px solid #AA98FF;
   border-radius: 50%;
@@ -64,7 +76,7 @@
   left: 413px;
     z-index: 2; 
 }
-.circleNo2 {
+ .circleNo2{
   background-color: #6D51EE;
   border: 4px solid #AA98FF;
   position: absolute;
@@ -76,7 +88,18 @@
   background: #D8DEE4;
   z-index: 2; 
 }
-.circleNo3 {
+ .circleNo2-active {
+  background-color: #6D51EE;
+  border: 4px solid #AA98FF;
+  position: absolute;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  top: 380px;
+  left: 413px;
+  z-index: 2; 
+}
+ .circleNo3{
   background-color: #6D51EE;
   border: 4px solid #AA98FF;
   position: absolute;
@@ -89,7 +112,19 @@
   z-index: 2; 
 
 }
-.circleNo4 {
+ .circleNo3-active{
+  background-color: #6D51EE;
+  border: 4px solid #AA98FF;
+  position: absolute;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  top: 525px;
+  left: 413px;
+  z-index: 2; 
+
+}
+.circleNo4{
   background-color: #6D51EE;
   border: 4px solid #AA98FF;
   position: absolute;
@@ -99,6 +134,17 @@
   top: 680px;
   left: 413px;
   background: #D8DEE4;
+  z-index: 2; 
+}
+.circleNo4-active{
+  background-color: #6D51EE;
+  border: 4px solid #AA98FF;
+  position: absolute;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  top: 680px;
+  left: 413px;
   z-index: 2; 
 }
 .circleNo5 {
@@ -111,6 +157,17 @@
   top: 785px;
   left: 367px;
   background: #D8DEE4;
+}
+.circleNo5.active {
+  background-color: #6D51EE;
+  border: 4px solid #AA98FF;
+  position: absolute;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  top: 785px;
+  left: 367px;
+  z-index: 2;
 }
 
 .background{

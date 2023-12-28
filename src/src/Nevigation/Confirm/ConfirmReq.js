@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './ConfirmSTR.css'; 
 import InstAI_icon from '../../image/instai_icon.png';
 
 function ConfirmReq() {
   const [reqData, setReqData] = useState({});
-  const [editable, setEditable] = useState(false);
-  const [confirmed, setConfirmed] = useState(localStorage.getItem('confirmed') === 'true' || false);
   const location = useLocation();
+  const [editable, setEditable] = useState(false);
   const searchParams = new URLSearchParams(location.search);
-  const id = searchParams.get('id');
   const projectname = searchParams.get('projectname');
+  const id = searchParams.get('id');
   const navigate = useNavigate();
+  const [confirmed, setConfirmed] = useState(JSON.parse(localStorage.getItem(`confirmed_${id}_${projectname}`)) === true);
+
   console.log('Initial confirmed value:', confirmed);
   const fetchData = async () => {
     try {
@@ -32,6 +33,7 @@ function ConfirmReq() {
   };
 
   useEffect(() => {
+    localStorage.setItem(`confirmed_${id}_${projectname}`, confirmed.toString());
     fetchData();
   }, [id, projectname]);
 
@@ -87,7 +89,7 @@ function ConfirmReq() {
   const handleCancelConfirmation = () => {
   const userConfirmed = window.confirm('Are you sure you want to cancel the confirmation?');
   if (userConfirmed) {
-    localStorage.setItem('confirmed', 'false');
+    localStorage.setItem(`confirmed_${id}_${projectname}`, 'false');
     setConfirmed(false);
   }
 };
@@ -95,7 +97,7 @@ function ConfirmReq() {
 const handleConfirmRequirement = () => {
   const userConfirmed = window.confirm('Are you sure you want to confirm the requirement?');
   if (userConfirmed) {
-    localStorage.setItem('confirmed', 'true');
+    localStorage.setItem(`confirmed_${id}_${projectname}`, 'true');
     setConfirmed(true);
   }
 };
@@ -121,7 +123,7 @@ const handleConfirmRequirement = () => {
         <img src={InstAI_icon} className="logo" alt="Your Logo" />
       </div>
       <div className="data-preview">
-        <h2>Data Preview</h2>
+        <h2>Requirement Preview</h2>
         <div className="questions-answers">
           {reqData.Requirement1 && (
             <div className="question-answer">
@@ -163,7 +165,6 @@ const handleConfirmRequirement = () => {
       <button
         onClick={handleConfirmButtonClick}
         style={{ backgroundColor: confirmed ? 'green' : '' }}
-        disabled={confirmed}
       >
         {confirmed ? 'Requirement is already confirmed' : 'Confirm requirement is already'}
       </button>
