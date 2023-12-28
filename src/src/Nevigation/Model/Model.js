@@ -81,9 +81,9 @@ function Model() {
         {/*<div className="progress-text">{getProgressText()}</div> */}
       </div>
       <div>
-        <button onClick={DataClick}>Upload new data</button>
-        <button onClick={ReqClick}>Reply message</button>
-        <NavLink to = "/Step?id=${userid}&type=1"><button>go back</button></NavLink>
+        {/*<button onClick={DataClick}>Upload new data</button>*/}
+        {/*<button onClick={ReqClick}>Reply message</button>*/}
+        {/*<NavLink to = "/Step?id=${userid}&type=1"><button>go back</button></NavLink>*/}
       </div>
     </div>
   );
@@ -91,19 +91,3 @@ function Model() {
 
 export default Model;
 
-
-/*
-  const getProgressText = () => {
-    if (progress < 20) {
-      return "Request received";
-    } else if (progress < 40) {
-      return "Processing request";
-    } else if (progress < 60) {
-      return "Data generation";
-    } else if (progress < 80) {
-      return "AI model training";
-    } else {
-      return "Model download";
-    }
-  };
-  */

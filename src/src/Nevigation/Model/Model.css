@@ -1,28 +1,32 @@
 
-  .model-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
+.model-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box; 
+}
+.main-Giwawa {
+  grid-area: InstAI-Icon;
+  justify-self: start;
+}
   
-  .main-Giwawa {
-    grid-area: InstAI-Icon;
-    justify-self: start;
-  }
-  
-  .progress-bar-container {
-    width: 80%;
-    margin-top: 20px;
-  }
+.progress-bar-container {
+  width: 80%;
+  margin-top: 20px;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+}
   
   .progress-bar {
     position: relative;
     height: 10px;
     background-color: #ccc;
+    transition: width 0.5s ease-in-out;
   }
-  
+
   .progress {
     height: 100%;
     background-color: #4a90e2;
@@ -30,19 +34,19 @@
   
   .circle {
     position: absolute;
-    top:-15px;
+    top: -15px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-color: #800080;
     transform: translateX(-50%);
+    
   }
-  
   .progress-text {
-    top:20px;
+    top: 20px;
     margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
     color: #333;
-  }
   
+  }
