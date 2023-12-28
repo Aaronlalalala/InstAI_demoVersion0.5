@@ -13,7 +13,7 @@ function ConfirmReq() {
   const id = searchParams.get('id');
   const projectname = searchParams.get('projectname');
   const navigate = useNavigate();
-
+  console.log('Initial confirmed value:', confirmed);
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -66,10 +66,21 @@ function ConfirmReq() {
   };
 
   const handleConfirmButtonClick = () => {
-    if (confirmed) {
-      handleCancelConfirmation();
+    console.log('handleConfirmButtonClick triggered');
+    const confirmeState = window.confirm("do you want to change confirm state");
+  
+    if (confirmeState) {
+      if(confirmed){
+        console.log("取消確認狀態");
+        handleCancelConfirmation();
+      }
+      else{
+        console.log("確認狀態");
+        handleConfirmRequirement();
+      }
     } else {
-      handleConfirmRequirement();
+      console.log("取消變更");
+      return;
     }
   };
   
@@ -93,7 +104,7 @@ const handleConfirmRequirement = () => {
     if (!confirmed) {
       const userConfirmed = window.confirm('You have not confirmed the requirement. Are you sure you want to go back?');
       if (!userConfirmed) {
-        return; // Do not proceed if the user cancels
+        return; 
       }
     }
 

@@ -14,6 +14,7 @@ function ConfirmImg() {
   const [confirmed, setConfirmed] = useState(localStorage.getItem('confirmed') === 'true' || false);
   const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
+  console.log("現在狀態",confirmed);
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/api/upload/download?username=${id}&projectname=${projectname}`);
@@ -74,10 +75,21 @@ function ConfirmImg() {
   };
 
   const handleConfirmButtonClick = () => {
-    if (confirmed) {
-      handleCancelConfirmation();
+    console.log('handleConfirmButtonClick triggered');
+    const confirmeState = window.confirm("do you want to change confirm state");
+  
+    if (confirmeState) {
+      if(confirmed){
+        console.log("取消確認狀態");
+        handleCancelConfirmation();
+      }
+      else{
+        console.log("確認狀態");
+        handleConfirmRequirement();
+      }
     } else {
-      handleConfirmRequirement();
+      console.log("取消變更");
+      return;
     }
   };
   
