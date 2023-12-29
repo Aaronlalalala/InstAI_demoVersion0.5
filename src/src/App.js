@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState} from 'react';
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import MainPage from "./Nevigation/mainPage/MainPage";
@@ -21,15 +21,15 @@ import ConfirmReq from "./Nevigation/Confirm/ConfirmReq";
 import Model     from "./Nevigation/Model/Model";
 import Data      from "./Nevigation/Model/Data";
 import Req from "./Nevigation/Model/Req";
-export const ConfirmContext = createContext();
+import ViewData from "./Nevigation/Confirm/ViewData";
+import ViewReq from "./Nevigation/Confirm/ViewReq";
 
 function App() {
   const [userstate, setUserState] = useState({});
-  const [confirmStatusImg, setConfirmStatusImg] = useState(localStorage.getItem('confirmStatusImg') === 'true' ? true : false);
-  const [confirmDtatueReq, setConfirmStatueReq] = useState(localStorage.getItem("confirmStatueReq") === 'true' ? true : false);
+  
   return (
     <div className="App">
-      <ConfirmContext.Provider value={{ confirmStatusImg, setConfirmStatusImg, confirmDtatueReq, setConfirmStatueReq }}>
+     
   
       <Router>
         <Routes>
@@ -53,9 +53,11 @@ function App() {
           <Route path="/Model"     element={<Model/>}></Route>
           <Route path="/Data"  element={<Data/>}></Route>
           <Route path="/Req" element={<Req/>}></Route> 
+          <Route path="/ViewData" element={<ViewData/>}></Route>
+          <Route path="/ViewReq" element={<ViewReq/>}></Route>
         </Routes>
       </Router>
-      </ConfirmContext.Provider>
+     
     </div>
   );
 }

@@ -55,6 +55,10 @@ function Step() {
         console.log("upload:",upload);
         navigate(`/Download2?id=${userid}&projectname=${projectname}`);
       }
+      else{
+        console.log("upload 已經確定");
+        navigate(`/ViewData?id=${userid}&projectname=${projectname}}`);
+      }
     }
   };
   
@@ -62,20 +66,30 @@ function Step() {
     console.log("第二個按鈕被點擊");
     const userConfirm=window.confirm("填寫需求");
     if (userConfirm) {
-      if (!requirement) {
+      if(upload){
+         if (!requirement) {
         setRequirement((prevData) => {
           const newRequirement = !prevData;
           localStorage.setItem(`secondPage_${userid}_${projectname}`, newRequirement.toString());
           return newRequirement;
         });
+        console.log("Fill out the form : ",requirement);
+        navigate(`/Requirment?id=${userid}&projectname=${projectname}`);
       }
-      console.log("Fill out the form : ",requirement);
-      navigate(`/Requirment?id=${userid}&projectname=${projectname}`);
+      else{
+        console.log("requirement 已經確定");
+        navigate(`/ViewReq?id=${userid}&projectname=${projectname}`)
+      }
     }
+    else{
+      window.confirm("請從第一步開始")
+    }
+   }
   };
   const handleFormDataChange = () => {
     const userConfirm=window.confirm("圖片檢查");
     if(userConfirm){
+      if(upload && requirement){
       if(confirm1Data){
         console.log("不須1212");
         navigate(`/ConfirmImg?id=${userid}&projectname=${projectname}`);
@@ -90,11 +104,16 @@ function Step() {
       console.log('Button clicked. Confirm is now:', confirm1Data);
       navigate(`/ConfirmImg?id=${userid}&projectname=${projectname}`);
     }
+    else{
+      window.confirm("請照步驟執行");
+    }
+  }
   };
 
   const handleForm2DataChange = () => {
     const userConfirm=window.confirm("x眼派對!!!");
     if(userConfirm){
+      if(confirm1Data && requirement && upload){
       if(confirm2Data){
         console.log("不須變更");
         navigate(`/ConfirmReq?id=${userid}&projectname=${projectname}`);
@@ -106,19 +125,23 @@ function Step() {
           return newConfirm2Data;
         });
       }
+      console.log('Button clicked. Confirm is now:', confirm2Data);
+      navigate(`/ConfirmReq?id=${userid}&projectname=${projectname}`);
     }
-    console.log('Button clicked. Confirm is now:', confirm2Data);
-    navigate(`/ConfirmReq?id=${userid}&projectname=${projectname}`);
+    else{
+      window.confirm("請照步驟執行");
+    }
+  }
   };
 
   const navigateLogic=()=>{
     const userConfirm=window.confirm("彥君的魔法世界");
     if(userConfirm ){
-    if (confirm1Data  && confirm2Data ){  
+    if (confirm1Data  && confirm2Data && upload && requirement){  
       navigate(modelLink);
     }
     else{
-      window.confirm("步驟錯誤");
+      window.confirm("請照步驟執行");
       console.log("error reading");
     }
   }
@@ -170,7 +193,7 @@ function Step() {
           <li className='listTitle'>Upload training data</li>
           <li>Upload the image data you wish to use to train your style model</li> {/*第一個要追蹤的進度 如果使用者點進這個navlink之後 並且這個navlink被上傳的資料不為空 則顯示進度1完成 */}
         </ul>
-        <button className="upload-buttonNo1" onClick={Green1} disabled={upload}>
+        <button className="upload-buttonNo1" onClick={Green1} >
               Upload
         </button>
 
@@ -182,7 +205,7 @@ function Step() {
           <li>Tell us your specific needs for AI model training</li>
         </ul>
 
-          <button className="upload-buttonNo2" onClick={Green2} disabled={requirement} >
+          <button className="upload-buttonNo2" onClick={Green2} >
             Fill out the form
             </button>
       </div>
@@ -192,8 +215,8 @@ function Step() {
           <li className='listTitle'>Training your AI model</li>
           <li>You haven't submitted data yet</li>
         </ul>
-        <button className="upload-buttonNo3" onClick={handleFormDataChange}>Check data</button>
-       <button className="upload-buttonNo4" onClick={handleForm2DataChange}>Check requirements</button>
+        <button className="upload-buttonNo3" onClick={handleFormDataChange} >Check data</button>
+       <button className="upload-buttonNo4" onClick={handleForm2DataChange} >Check requirements</button>
       </div>
 
       <div className="frameNo4">
